@@ -20,3 +20,11 @@ mongoose.connection.on('error', err => {
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+// ... other imports and setup
+app.use('/api/auth', require('./routes/auth'));
+
+// Protected route example
+app.get('/api/protected', auth, (req, res) => {
+  res.json({ msg: 'This is a protected route' });
+});
